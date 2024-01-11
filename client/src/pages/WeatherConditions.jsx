@@ -8,7 +8,9 @@ const WeatherConditions = () => {
   useEffect(() => {
     async function fetch() {
       try {
-        const res = await axios.get("http://192.168.0.180:8800/HamConditions");
+        const res = await axios.get(
+          "http://192.168.0.180:8800/WeatherConditions"
+        );
         setConditions(res.data.ConditionReports);
       } catch (err) {
         console.log(err);
@@ -27,7 +29,7 @@ const WeatherConditions = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold mb-4">Ham Conditions</h1>
+      <h1 className="text-3xl font-bold mb-4">Weather Conditions</h1>
       <div class="mx-auto">
         <div class="flex flex-col">
           <div class="overflow-x-auto shadow-md sm:rounded-lg">
@@ -40,55 +42,31 @@ const WeatherConditions = () => {
                         scope="col"
                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                       >
+                        Date
+                      </th>
+                      <th
+                        scope="col"
+                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
+                      >
                         Time
                       </th>
                       <th
                         scope="col"
                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                       >
-                        80m-40m Day
+                        Conditions
                       </th>
                       <th
                         scope="col"
                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                       >
-                        80m-40m Night
+                        Temp
                       </th>
                       <th
                         scope="col"
                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                       >
-                        30m-20m Day
-                      </th>
-                      <th
-                        scope="col"
-                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        30m-20m Night
-                      </th>
-                      <th
-                        scope="col"
-                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        17m-15m Day
-                      </th>
-                      <th
-                        scope="col"
-                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        17m-15m Night
-                      </th>
-                      <th
-                        scope="col"
-                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        12m-10m Day
-                      </th>
-                      <th
-                        scope="col"
-                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        12m-10m Night
+                        Humidity
                       </th>
                     </tr>
                   </thead>
@@ -104,91 +82,99 @@ const WeatherConditions = () => {
                           onClick={() => toggleRow(index)}
                         >
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition.date_time}
+                            {condition.modified_date}
                           </td>
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["80m_40m_Day"]}
+                            {condition.modified_time}
                           </td>
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["80m_40m_Night"]}
+                            {condition.weather}
                           </td>
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["30m_20m_Day"]}
+                            {condition.temp_f}
                           </td>
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["30m_20m_Night"]}
-                          </td>
-                          <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["17m_15m_Day"]}
-                          </td>
-                          <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["17m_15m_Night"]}
-                          </td>
-                          <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["12m_10m_Day"]}
-                          </td>
-                          <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["12m_10m_Night"]}
+                            {condition.relative_humidity}
                           </td>
                         </tr>
                         {expandedRows[index] && (
                           <tr>
                             <td colspan="12" class="p-4">
                               <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
-                                <thead class="bg-green-100 dark:bg-green-700">
+                                <thead class="bg-green-100 dark:bg-green-600">
                                   <tr>
                                     <th
                                       scope="col"
                                       class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                                     >
-                                      Sunspot Number
+                                      Wind Direction
                                     </th>
                                     <th
                                       scope="col"
                                       class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                                     >
-                                      Solar Flux
+                                      Wind Degrees
                                     </th>
                                     <th
                                       scope="col"
                                       class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                                     >
-                                      Geomagnetic Storm
+                                      Wind Knots
                                     </th>
                                     <th
                                       scope="col"
                                       class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                                     >
-                                      Solar Wind
+                                      Pressure
                                     </th>
                                     <th
                                       scope="col"
                                       class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                                     >
-                                      Noise Floor
+                                      Dewpoint
+                                    </th>
+                                    <th
+                                      scope="col"
+                                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
+                                    >
+                                      Wind Chill
+                                    </th>
+                                    <th
+                                      scope="col"
+                                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
+                                    >
+                                      Visibility
                                     </th>
                                   </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                                   <tr>
                                     <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.sunspot_number}
+                                      {condition.wind_dir}
                                     </td>
 
                                     <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.solar_flux}
+                                      {condition.wind_degrees}
                                     </td>
 
                                     <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.geomagnetic_storm}
+                                      {condition.wind_kt}
                                     </td>
 
                                     <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.solar_wind}
+                                      {condition.pressure_in}
                                     </td>
 
                                     <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.noise_floor}
+                                      {condition.dewpoint_f}
+                                    </td>
+
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                      {condition.windchill_f}
+                                    </td>
+
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                      {condition.visibility_mi}
                                     </td>
                                   </tr>
                                 </tbody>
