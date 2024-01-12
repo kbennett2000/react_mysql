@@ -36,7 +36,7 @@ const App = () => {
         </button>
         <button
           className={`flex-1 py-2 px-4 border-b-2 ${
-            activeTab === 1
+            activeTab === 3
               ? "border-blue-500 text-blue-500"
               : "border-gray-300 text-gray-500"
           } focus:outline-none`}
