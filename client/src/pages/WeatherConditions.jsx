@@ -9,7 +9,7 @@ const WeatherConditions = () => {
     async function fetch() {
       try {
         const res = await axios.get(
-          "http://192.168.0.180:8800/WeatherConditions"
+          "http://192.168.0.235:8800/WeatherConditions"
         );
         setConditions(res.data.ConditionReports);
       } catch (err) {
