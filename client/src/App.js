@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import HamConditions from "./pages/HamConditions";
 import WeatherConditions from "./pages/WeatherConditions";
 import PiStarConditions from "./pages/PiStarConditions";
+import OWMConditions from "./pages/OWMConditions";
+
 import "./App.css";
 
 const App = () => {
@@ -44,12 +46,23 @@ const App = () => {
         >
           PiStar Conditions
         </button>
+        <button
+          className={`flex-1 py-2 px-4 border-b-2 ${
+            activeTab === 4
+              ? "border-blue-500 text-blue-500"
+              : "border-gray-300 text-gray-500"
+          } focus:outline-none`}
+          onClick={() => handleTabClick(4)}
+        >
+          OpenWeatherMap Conditions
+        </button>
       </div>
 
       <div className="tab-content mt-4">
         {activeTab === 1 && <HamConditions />}
         {activeTab === 2 && <WeatherConditions />}
         {activeTab === 3 && <PiStarConditions />}
+        {activeTab === 4 && <OWMConditions />}
       </div>
     </div>
   );
