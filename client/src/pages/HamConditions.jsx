@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const WeatherConditions = () => {
+const HamConditions = () => {
   const [conditions, setConditions] = useState([]);
   const [expandedRows, setExpandedRows] = useState([]);
 
   useEffect(() => {
     async function fetch() {
       try {
-        const res = await axios.get("http://192.168.0.180:8800/HamConditions");
+        const res = await axios.get("http://192.168.0.235:8800/HamConditions");
         setConditions(res.data.ConditionReports);
       } catch (err) {
         console.log(err);
@@ -209,4 +209,4 @@ const WeatherConditions = () => {
   );
 };
 
-export default WeatherConditions;
+export default HamConditions;
