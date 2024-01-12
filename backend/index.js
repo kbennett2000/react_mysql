@@ -37,6 +37,16 @@ let dbPiStar = mysql.createPool({
   queueLimit: 0,
 });
 
+let dbOWM = mysql.createPool({
+  host: "192.168.0.235",
+  user: "testUser",
+  password: "password1",
+  database: "OWMConditionsDB",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+});
+
 console.log("password is " + process.env.MYSQL_PASSWORD);
 
 app.get("/HamConditions", async (req, res) => {
@@ -57,6 +67,13 @@ app.get("/WeatherConditions", async (req, res) => {
 app.get("/PiStarConditions", async (req, res) => {
   const promise = dbPiStar.promise();
   const query = "SELECT * FROM ConditionReports ORDER BY date DESC, time DESC";
+  const [rows, fields] = await promise.execute(query);
+  return res.status(200).json({ ConditionReports: rows });
+});
+
+app.get("/OWMConditions", async (req, res) => {
+  const promise = dbPiStar.promise();
+  const query = "SELECT * FROM OWMConditionsDB.ConditionReports ORDER BY date DESC, time DESC";
   const [rows, fields] = await promise.execute(query);
   return res.status(200).json({ ConditionReports: rows });
 });
