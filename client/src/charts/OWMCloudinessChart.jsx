@@ -1,28 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Line, Bar } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
+import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend,} from "chart.js";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
+
+// TODO: Edit config parameters
+const chartTitle = "24 Cloudiness Report";
+const chartLabel = "Cloudiness";
+const chartBorderColor = "rgb(204, 136, 0)";
+const chartBackgroundColor = "rgba(204, 136, 0, 0.5)";
+const dataEndpointLocation = "http://192.168.0.235:8800/OWMChartData";
 
 export const options = {
   responsive: true,
@@ -32,51 +20,67 @@ export const options = {
     },
     title: {
       display: true,
-      text: "24 Cloudiness Report",
+      text: chartTitle,
     },
   },
 };
 
-const labels = [];
-const cloudinessValues = [];
-let hasRun = false;
-
+// TODO: Change control name
 const OWMCloudinessChart = () => {
   const [conditions, setConditions] = useState([]);
+  const [data, setData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: chartLabel,
+        data: [],
+        borderColor: chartBorderColor,
+        backgroundColor: chartBackgroundColor,
+      },
+    ],
+  });
 
   useEffect(() => {
-    async function fetch() {
+    const fetchData = async () => {
       try {
-        if (!hasRun) {
-          hasRun = true;
-          const res = await axios.get("http://192.168.0.235:8800/OWMChartData");
-          setConditions(res.data.ConditionReports);
+        const res = await axios.get(dataEndpointLocation);
+        setConditions(res.data.ConditionReports);
 
-          res.data.ConditionReports.map((currentElement) => {
-            labels.push(currentElement.date + " - " + currentElement.time);
-            cloudinessValues.push(currentElement.cloudiness.replace('%', ''));
-          });
-        }
+        const myLabels = [];
+        const myValues = [];
+
+        // TODO: Edit charted items here
+        res.data.ConditionReports.forEach((currentElement) => {
+          myLabels.push(currentElement.date + " - " + currentElement.time);
+          myValues.push(currentElement.cloudiness.replace('%', ''));
+        });
+
+        setData({
+          labels: myLabels,
+          datasets: [
+            {
+              label: chartLabel,
+              data: myValues,
+              borderColor: chartBorderColor,
+              backgroundColor: chartBackgroundColor,
+            },
+          ],
+        });
       } catch (err) {
         console.log(err);
       }
-    }
-    fetch();
+    };
+
+    fetchData(); // Initial fetch
+
+    // TODO: Change from 1 minute interval if needed
+    const interval = setInterval(fetchData, 1 * 60 * 1000);
+    return () => clearInterval(interval);
   }, []);
 
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Cloudiness",
-        data: labels.map((currentElement, index) => cloudinessValues[index]),
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-    ],
-  };
-
+  // TODO: Change chart type if needed
   return <div><Bar options={options} data={data} /></div>;
+};
 
-}
+// TODO: Change control name
 export default OWMCloudinessChart;
