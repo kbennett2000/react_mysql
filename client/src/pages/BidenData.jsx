@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const OWMConditions = () => {
+const BidenData = () => {
   const [conditions, setConditions] = useState([]);
   const [expandedRows, setExpandedRows] = useState([]);
 
@@ -95,4 +95,4 @@ const OWMConditions = () => {
   );
 };
 
-export default OWMConditions;
+export default BidenData;
