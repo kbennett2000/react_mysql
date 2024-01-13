@@ -50,7 +50,7 @@ const OWMTempChart = () => {
       try {
         if (!hasRun) {
           hasRun = true;
-          const res = await axios.get("http://192.168.0.235:8800/OWMTempData");
+          const res = await axios.get("http://192.168.0.235:8800/OWMChartData");
           setConditions(res.data.ConditionReports);
 
           res.data.ConditionReports.map((currentElement) => {
@@ -84,7 +84,7 @@ const OWMTempChart = () => {
     ],
   };
 
-  return <div><Line options={options} data={data} /> < br /> <Bar options={options} data={data} /></div>;
+  return <div><Line options={options} data={data} /></div>;
 
 }
 export default OWMTempChart;
