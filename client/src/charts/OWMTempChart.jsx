@@ -30,7 +30,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: "24 Temperature Report",
+      text: "24 Hour Temperature Report",
     },
   },
 };
