@@ -67,7 +67,7 @@ app.get("/HamConditions", async (req, res) => {
 app.get("/WeatherConditions", async (req, res) => {
   const promise = dbWeather.promise();
   const query =
-    "SELECT *, DATE_FORMAT(STR_TO_DATE(SUBSTRING(observation_time, LOCATE('on ', observation_time) + 3, LOCATE(',', observation_time) - LOCATE('on ', observation_time) - 3), '%b %d %Y'), '%m/%d/%Y') AS modified_date, TIME_FORMAT(STR_TO_DATE(SUBSTRING(observation_time, LOCATE(', ', observation_time) + 2), '%l:%i %p'), '%H:%i') AS modified_time FROM WeatherConditionsDB.ConditionReports ORDER BY modified_date DESC, modified_time DESC LIMIT 72;";
+    "SELECT *, DATE_FORMAT(STR_TO_DATE(SUBSTRING(observation_time, LOCATE('on ', observation_time) + 3, LOCATE(',', observation_time) - LOCATE('on ', observation_time) - 3), '%b %d %Y'), '%m/%d/%Y') AS modified_date, TIME_FORMAT(STR_TO_DATE(SUBSTRING(observation_time, LOCATE(', ', observation_time) + 2), '%l:%i %p'), '%H:%i') AS modified_time FROM WeatherConditionsDB.ConditionReports ORDER BY modified_date DESC, modified_time DESC LIMIT 24;";
   const [rows, fields] = await promise.execute(query);
   return res.status(200).json({ ConditionReports: rows });
 });
