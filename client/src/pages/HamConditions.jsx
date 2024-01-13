@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+// TODO: Change emojis if needed
+const goodEmoji = '😍';
+const fairEmoji = '🫤';
+const poorEmoji = '💩';
+
 const HamConditions = () => {
   const [conditions, setConditions] = useState([]);
   const [expandedRows, setExpandedRows] = useState([]);
@@ -106,29 +111,45 @@ const HamConditions = () => {
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition.date_time}
                           </td>
-                          <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["80m_40m_Day"]}
+                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {condition["80m_40m_Day"] === "Good" && goodEmoji}
+                            {condition["80m_40m_Day"] === "Fair" && fairEmoji}
+                            {condition["80m_40m_Day"] === "Poor" && poorEmoji}
                           </td>
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["80m_40m_Night"]}
+                            {condition["80m_40m_Night"] === "Good" && goodEmoji}
+                            {condition["80m_40m_Night"] === "Fair" && fairEmoji}
+                            {condition["80m_40m_Night"] === "Poor" && poorEmoji}
                           </td>
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["30m_20m_Day"]}
+                            {condition["30m_20m_Day"] === "Good" && goodEmoji}
+                            {condition["30m_20m_Day"] === "Fair" && fairEmoji}
+                            {condition["30m_20m_Day"] === "Poor" && poorEmoji}
                           </td>
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["30m_20m_Night"]}
+                            {condition["30m_20m_Night"] === "Good" && goodEmoji}
+                            {condition["30m_20m_Night"] === "Fair" && fairEmoji}
+                            {condition["30m_20m_Night"] === "Poor" && poorEmoji}
                           </td>
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["17m_15m_Day"]}
+                            {condition["17m_15m_Day"] === "Good" && goodEmoji}
+                            {condition["17m_15m_Day"] === "Fair" && fairEmoji}
+                            {condition["17m_15m_Day"] === "Poor" && poorEmoji}                            
                           </td>
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["17m_15m_Night"]}
+                            {condition["17m_15m_Night"] === "Good" && goodEmoji}
+                            {condition["17m_15m_Night"] === "Fair" && fairEmoji}
+                            {condition["17m_15m_Night"] === "Poor" && poorEmoji}
                           </td>
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["12m_10m_Day"]}
+                            {condition["12m_10m_Day"] === "Good" && goodEmoji}
+                            {condition["12m_10m_Day"] === "Fair" && fairEmoji}
+                            {condition["12m_10m_Day"] === "Poor" && poorEmoji}
                           </td>
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["12m_10m_Night"]}
+                            {condition["12m_10m_Night"] === "Good" && goodEmoji}
+                            {condition["12m_10m_Night"] === "Fair" && fairEmoji}
+                            {condition["12m_10m_Night"] === "Poor" && poorEmoji}
                           </td>
                         </tr>
                         {expandedRows[index] && (
