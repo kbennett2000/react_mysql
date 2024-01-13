@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
+  BarElement,
   PointElement,
   LineElement,
   Title,
@@ -15,6 +16,7 @@ import {
 ChartJS.register(
   CategoryScale,
   LinearScale,
+  BarElement,
   PointElement,
   LineElement,
   Title,
@@ -82,7 +84,7 @@ const OWMTempChart = () => {
     ],
   };
 
-  return <Line options={options} data={data} />;
-};
+  return <div><Line options={options} data={data} /> < br /> <Bar options={options} data={data} /></div>;
 
+}
 export default OWMTempChart;
