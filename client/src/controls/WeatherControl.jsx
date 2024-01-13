@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import WeatherConditions from "../pages/WeatherConditions";
 import OWMConditions from "../pages/OWMConditions";
-import OWMTempChart from "./OWMTempChart";
+import OWMTempChart from "../charts/OWMTempChart";
 import "../App.css";
 
 const WeatherControl = () => {
