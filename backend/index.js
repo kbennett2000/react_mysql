@@ -47,7 +47,15 @@ let dbOWM = mysql.createPool({
   queueLimit: 0,
 });
 
-console.log("password is " + process.env.MYSQL_PASSWORD);
+let dbBiden = mysql.createPool({
+  host: "192.168.0.235",
+  user: "testUser",
+  password: "password1",
+  database: "Biden538DB",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+});
 
 app.get("/HamConditions", async (req, res) => {
   const promise = dbHam.promise();
@@ -76,6 +84,13 @@ app.get("/OWMConditions", async (req, res) => {
   const query = "SELECT * FROM OWMConditionsDB.ConditionReports ORDER BY date DESC, time DESC";
   const [rows, fields] = await promise.execute(query);
   return res.status(200).json({ ConditionReports: rows });
+});
+
+app.get("/BidenData", async (req, res) => {
+  const promise = dbPiStar.promise();
+  const query = "SELECT * FROM Biden538DB.BidenApproval ORDER BY date DESC, time DESC";
+  const [rows, fields] = await promise.execute(query);
+  return res.status(200).json({ BidenApproval: rows });
 });
 
 app.listen(8800, "0.0.0.0", () => {
