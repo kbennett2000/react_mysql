@@ -11,7 +11,7 @@ const BidenData = () => {
         const res = await axios.get(
           "http://192.168.0.235:8800/BidenData"
         );
-        setConditions(res.data.ConditionReports);
+        setConditions(res.data.BidenApproval);
       } catch (err) {
         console.log(err);
       }
