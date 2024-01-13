@@ -1,26 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Line } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
+import { Line, Bar } from "react-chartjs-2";
+import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend,} from "chart.js";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
+
+// TODO: Edit config parameters
+const chartTitle = "Joe Biden's 90 Day Approval Rating";
+const chartLabel = "Approve";
+const chartLabel2 = "Disapprove";
+const chartBorderColor = "rgb(53, 162, 235)";
+const chartBackgroundColor = "rgba(53, 162, 235, 0.5)";
+const chartBorderColor2 = "rgb(255, 99, 132)";
+const chartBackgroundColor2 = "rgba(255, 99, 132, 0.5)";
+const dataEndpointLocation = "http://192.168.0.235:8800/BidenData";
 
 export const options = {
   responsive: true,
@@ -30,59 +23,81 @@ export const options = {
     },
     title: {
       display: true,
-      text: "90 Day Biden Approval Ratings",
+      text: chartTitle,
     },
   },
 };
 
-const labels = [];
-const approveValues = [];
-const disapproveValues = [];
-let hasRun = false;
-
+// TODO: Change control name
 const BidenApprovalChart = () => {
   const [conditions, setConditions] = useState([]);
+  const [data, setData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: chartLabel,
+        data: [],
+        borderColor: chartBorderColor,
+        backgroundColor: chartBackgroundColor,
+      },
+      {
+        label: chartLabel2,
+        data: [],
+        borderColor: chartBorderColor2,
+        backgroundColor: chartBackgroundColor2,
+      },
+    ],
+  });
 
   useEffect(() => {
-    async function fetch() {
+    const fetchData = async () => {
       try {
-        if (!hasRun) {
-          hasRun = true;
-          const res = await axios.get("http://192.168.0.235:8800/BidenData");
-          setConditions(res.data.ConditionReports);
+        const res = await axios.get(dataEndpointLocation);
+        setConditions(res.data.ConditionReports);
 
-          res.data.ConditionReports.map((currentElement) => {
-            labels.push(currentElement.reportDate);
-            approveValues.push(currentElement.approveEstimate);
-            disapproveValues.push(currentElement.disapproveEstimate);
-          });
-        }
+        const myLabels = [];
+        const myValues = [];
+        const myValues2 = [];
+
+        // TODO: Edit charted items here
+        res.data.ConditionReports.forEach((currentElement) => {
+          myLabels.push(currentElement.reportDate);
+          myValues.push(currentElement.approveEstimate);
+          myValues2.push(currentElement.disapproveEstimate);
+        });
+
+        setData({
+          labels: myLabels,
+          datasets: [
+            {
+              label: chartLabel,
+              data: myValues,
+              borderColor: chartBorderColor,
+              backgroundColor: chartBackgroundColor,
+            },
+            {
+              label: chartLabel2,
+              data: myValues2,
+              borderColor: chartBorderColor2,
+              backgroundColor: chartBackgroundColor2,
+            },
+          ],
+        });
       } catch (err) {
         console.log(err);
       }
-    }
-    fetch();
+    };
+
+    fetchData(); // Initial fetch
+
+    // TODO: Change from 1 minute interval if needed
+    const interval = setInterval(fetchData, 1 * 60 * 1000);
+    return () => clearInterval(interval);
   }, []);
 
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Approve",
-        data: labels.map((currentElement, index) => approveValues[index]),
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-      {
-        label: "Disapprove",
-        data: labels.map((currentElement, index) => disapproveValues[index]),
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-    ],
-  };
-
-  return <Line options={options} data={data} />;
+  // TODO: Change chart type if needed
+  return <div><Line options={options} data={data} /></div>;
 };
 
+// TODO: Change control name
 export default BidenApprovalChart;
