@@ -30,7 +30,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: "Biden Approval Ratings",
+      text: "90 Day Biden Approval Ratings",
     },
   },
 };
