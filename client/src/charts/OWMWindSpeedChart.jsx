@@ -1,34 +1,86 @@
-import React, { useState } from "react";
-import OWMTempChart from "../charts/OWMTempChart";
-import OWMCloudinessChart from "../charts/OWMCloudinessChart";
-import OWMWindSpeedChart from "../charts/OWMWindSpeedChart";
-import OWMHumidityChart from "../charts/OWMHumidityChart";
-import "../App.css";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Line, Bar } from "react-chartjs-2";
+import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend,} from "chart.js";
 
-const WeatherChartsControl = () => {
-  const [activeTab, setActiveTab] = useState(1);
+ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
-  const handleTabClick = (tabNumber) => {
-    setActiveTab(tabNumber);
-  };
+// TODO: Edit config parameters
+const chartTitle = "24 Hour Wind Speed Report";
+const chartLabel = "Wind Speed";
+const chartBorderColor = "rgb(0, 34, 204)";
+const chartBackgroundColor = "rgba(0, 34, 204, 0.5)";
+const dataEndpointLocation = "http://192.168.0.235:8800/OWMChartData";
 
-  return (
-    <div className="container mx-auto mt-8">
-      <div className="flex bg-gray-300" style={{ borderRadius: '8px' }}>
-        <button className={`flex-1 py-2 px-4 border-b-2 ${activeTab === 1 ? "border-blue-500 text-blue-500 bg-blue-200" : "border-gray-300 text-gray-500"} focus:outline-none`} onClick={() => handleTabClick(1)}>Temperature Report</button>
-        <button className={`flex-1 py-2 px-4 border-b-2 ${activeTab === 2 ? "border-blue-500 text-blue-500 bg-blue-200" : "border-gray-300 text-gray-500"} focus:outline-none`} onClick={() => handleTabClick(2)}>Cloudiness Report</button>
-        <button className={`flex-1 py-2 px-4 border-b-2 ${activeTab === 3 ? "border-blue-500 text-blue-500 bg-blue-200" : "border-gray-300 text-gray-500"} focus:outline-none`} onClick={() => handleTabClick(3)}>Wind Speed Report</button>
-        <button className={`flex-1 py-2 px-4 border-b-2 ${activeTab === 4 ? "border-blue-500 text-blue-500 bg-blue-200" : "border-gray-300 text-gray-500"} focus:outline-none`} onClick={() => handleTabClick(4)}>Relative Humidity Report</button>
-      </div>
-
-      <div className="tab-content mt-4">
-        {activeTab === 1 && <OWMTempChart />}
-        {activeTab === 2 && <OWMCloudinessChart />}
-        {activeTab === 3 && <OWMWindSpeedChart />}
-        {activeTab === 4 && <OWMHumidityChart />}
-      </div>
-    </div>
-  );
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top",
+    },
+    title: {
+      display: true,
+      text: chartTitle,
+    },
+  },
 };
 
-export default WeatherChartsControl;
+// TODO: Change control name
+const OWMWindSpeedChart = () => {
+  const [conditions, setConditions] = useState([]);
+  const [data, setData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: chartLabel,
+        data: [],
+        borderColor: chartBorderColor,
+        backgroundColor: chartBackgroundColor,
+      },
+    ],
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(dataEndpointLocation);
+        setConditions(res.data.ConditionReports);
+
+        const myLabels = [];
+        const myValues = [];
+
+        // TODO: Edit charted items here
+        res.data.ConditionReports.forEach((currentElement) => {
+          myLabels.push(currentElement.date + " - " + currentElement.time);
+          myValues.push(currentElement.windSpeed);
+        });
+
+        setData({
+          labels: myLabels,
+          datasets: [
+            {
+              label: chartLabel,
+              data: myValues,
+              borderColor: chartBorderColor,
+              backgroundColor: chartBackgroundColor,
+            },
+          ],
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchData(); // Initial fetch
+
+    // TODO: Change from 1 minute interval if needed
+    const interval = setInterval(fetchData, 1 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // TODO: Change chart type if needed
+  return <div><Line options={options} data={data} /></div>;
+};
+
+// TODO: Change control name
+export default OWMWindSpeedChart;
