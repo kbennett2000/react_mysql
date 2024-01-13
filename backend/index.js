@@ -59,7 +59,7 @@ let dbBiden = mysql.createPool({
 
 app.get("/HamConditions", async (req, res) => {
   const promise = dbHam.promise();
-  const query = "SELECT * FROM ConditionReports ORDER BY date_time DESC";
+  const query = "SELECT * FROM ConditionReports ORDER BY date_time DESC LIMIT 16";
   const [rows, fields] = await promise.execute(query);
   return res.status(200).json({ ConditionReports: rows });
 });
@@ -67,7 +67,7 @@ app.get("/HamConditions", async (req, res) => {
 app.get("/WeatherConditions", async (req, res) => {
   const promise = dbWeather.promise();
   const query =
-    "SELECT *, DATE_FORMAT(STR_TO_DATE(SUBSTRING(observation_time, LOCATE('on ', observation_time) + 3, LOCATE(',', observation_time) - LOCATE('on ', observation_time) - 3), '%b %d %Y'), '%m/%d/%Y') AS modified_date, TIME_FORMAT(STR_TO_DATE(SUBSTRING(observation_time, LOCATE(', ', observation_time) + 2), '%l:%i %p'), '%H:%i') AS modified_time FROM WeatherConditionsDB.ConditionReports ORDER BY modified_date DESC, modified_time DESC;";
+    "SELECT *, DATE_FORMAT(STR_TO_DATE(SUBSTRING(observation_time, LOCATE('on ', observation_time) + 3, LOCATE(',', observation_time) - LOCATE('on ', observation_time) - 3), '%b %d %Y'), '%m/%d/%Y') AS modified_date, TIME_FORMAT(STR_TO_DATE(SUBSTRING(observation_time, LOCATE(', ', observation_time) + 2), '%l:%i %p'), '%H:%i') AS modified_time FROM WeatherConditionsDB.ConditionReports ORDER BY modified_date DESC, modified_time DESC LIMIT 72;";
   const [rows, fields] = await promise.execute(query);
   return res.status(200).json({ ConditionReports: rows });
 });
@@ -80,15 +80,22 @@ app.get("/PiStarConditions", async (req, res) => {
 });
 
 app.get("/OWMConditions", async (req, res) => {
-  const promise = dbPiStar.promise();
-  const query = "SELECT * FROM OWMConditionsDB.ConditionReports ORDER BY date DESC, time DESC";
+  const promise = dbOWM.promise();
+  const query = "SELECT * FROM OWMConditionsDB.ConditionReports ORDER BY date DESC, time DESC LIMIT 96";
+  const [rows, fields] = await promise.execute(query);
+  return res.status(200).json({ ConditionReports: rows });
+});
+
+app.get("/OWMTempData", async (req, res) => {
+  const promise = dbOWM.promise();
+  const query = "SELECT date, time, temp, feelsLike FROM OWMConditionsDB.ConditionReports ORDER BY date, time LIMIT 96";
   const [rows, fields] = await promise.execute(query);
   return res.status(200).json({ ConditionReports: rows });
 });
 
 app.get("/BidenData", async (req, res) => {
-  const promise = dbPiStar.promise();
-  const query = "SELECT * FROM Biden538DB.BidenApproval ORDER BY date DESC, time DESC";
+  const promise = dbBiden.promise();
+  const query = "SELECT * FROM Biden538DB.BidenApproval ORDER BY date DESC, time DESC LIMIT 90";
   const [rows, fields] = await promise.execute(query);
   return res.status(200).json({ BidenApproval: rows });
 });
