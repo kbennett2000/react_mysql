@@ -3,6 +3,7 @@ import HamConditions from "./pages/HamConditions";
 import WeatherConditions from "./pages/WeatherConditions";
 import PiStarConditions from "./pages/PiStarConditions";
 import OWMConditions from "./pages/OWMConditions";
+import OWMTempChart from "./pages/OWMTempChart";
 import BidenData from "./pages/BidenData";
 
 import "./App.css";
@@ -28,7 +29,7 @@ const App = () => {
         {activeTab === 1 && <HamConditions />}
         {activeTab === 2 && <WeatherConditions />}
         {activeTab === 3 && <PiStarConditions />}
-        {activeTab === 4 && <OWMConditions />}
+        {activeTab === 4 && <div><OWMConditions /> <br /> <OWMTempChart /></div>}
         {activeTab === 5 && <BidenData />}
       </div>
     </div>
