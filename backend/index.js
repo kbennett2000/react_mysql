@@ -59,7 +59,7 @@ let dbBiden = mysql.createPool({
 
 app.get("/HamConditions", async (req, res) => {
   const promise = dbHam.promise();
-  const query = "SELECT * FROM ConditionReports ORDER BY date_time DESC LIMIT 16";
+  const query = "SELECT * FROM ConditionReports ORDER BY date_time DESC LIMIT 24";
   const [rows, fields] = await promise.execute(query);
   return res.status(200).json({ ConditionReports: rows });
 });
