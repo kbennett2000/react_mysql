@@ -53,14 +53,16 @@ const BidenApprovalChart = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(dataEndpointLocation);
-        setConditions(res.data.ConditionReports);
-
+        
+        // TODO: Change table name if needed
+        setConditions(res.data.BidenApproval);
         const myLabels = [];
         const myValues = [];
         const myValues2 = [];
 
+        // TODO: Change table name if needed
         // TODO: Edit charted items here
-        res.data.ConditionReports.forEach((currentElement) => {
+        res.data.BidenApproval.forEach((currentElement) => {
           myLabels.push(currentElement.reportDate);
           myValues.push(currentElement.approveEstimate);
           myValues2.push(currentElement.disapproveEstimate);
