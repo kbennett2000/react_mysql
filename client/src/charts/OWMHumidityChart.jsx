@@ -6,10 +6,10 @@ import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
 // TODO: Edit config parameters
-const chartTitle = "24 Hour Humidity Report";
-const chartLabel = "Relative Humidity";
-const chartBorderColor = "rgb(0, 128, 0)";
-const chartBackgroundColor = "rgba(0, 128, 0, 0.5)";
+const chartTitle = "24 Hour Wind Speed Report";
+const chartLabel = "Wind Speed";
+const chartBorderColor = "rgb(0, 34, 204)";
+const chartBackgroundColor = "rgba(0, 34, 204, 0.5)";
 const dataEndpointLocation = "http://192.168.0.235:8800/OWMChartData";
 
 export const options = {
@@ -26,7 +26,7 @@ export const options = {
 };
 
 // TODO: Change control name
-const OWMHumidityChart = () => {
+const OWMWindSpeedChart = () => {
   const [conditions, setConditions] = useState([]);
   const [data, setData] = useState({
     labels: [],
@@ -44,15 +44,17 @@ const OWMHumidityChart = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(dataEndpointLocation);
-        setConditions(res.data.ConditionReports);
 
+        // TODO: Change table name if needed
+        setConditions(res.data.ConditionReports);
         const myLabels = [];
         const myValues = [];
 
+        // TODO: Change table name if needed
         // TODO: Edit charted items here
         res.data.ConditionReports.forEach((currentElement) => {
           myLabels.push(currentElement.date + " - " + currentElement.time);
-          myValues.push(currentElement.humidity);
+          myValues.push(currentElement.windSpeed);
         });
 
         setData({
@@ -79,8 +81,9 @@ const OWMHumidityChart = () => {
   }, []);
 
   // TODO: Change chart type if needed
-  return <div><Bar options={options} data={data} /></div>;
+  return <div><Line options={options} data={data} /></div>;
 };
 
 // TODO: Change control name
-export default OWMHumidityChart;
+export default OWMWindSpeedChart;
+
