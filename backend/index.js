@@ -102,7 +102,7 @@ app.get("/BidenData", async (req, res) => {
 
 app.get("/BidenChartData", async (req, res) => {
   const promise = dbBiden.promise();
-  const query = "SELECT * FROM (SELECT * FROM Biden538DB.BidenApproval ORDER BY reportDate DESC, date DESC, time DESC) AS entireDataSet ORDER BY reportDate DESC";
+  const query = "SELECT * FROM (SELECT * FROM Biden538DB.BidenApproval ORDER BY reportDate DESC, date DESC, time DESC) AS entireDataSet ORDER BY reportDate ASC";
   const [rows, fields] = await promise.execute(query);
   return res.status(200).json({ BidenApproval: rows });
 });
