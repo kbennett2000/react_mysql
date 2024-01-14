@@ -52,6 +52,18 @@ const GasPricesChart = () => {
         borderColor: chartBorderColor2,
         backgroundColor: chartBackgroundColor2,
       },
+      {
+        label: chartLabel3,
+        data: [],
+        borderColor: chartBorderColor3,
+        backgroundColor: chartBackgroundColor3,
+      },
+      {
+        label: chartLabel4,
+        data: [],
+        borderColor: chartBorderColor4,
+        backgroundColor: chartBackgroundColor4,
+      },
     ],
   });
 
@@ -72,11 +84,17 @@ const GasPricesChart = () => {
         // TODO: Edit charted items here
         res.data.GasPrices.forEach((currentElement) => {
           myLabels.push(currentElement.date + " - " + currentElement.time);
-          myValues.push(currentElement.regularPrice);
-          myValues2.push(currentElement.midGradePrice);
-          myValues3.push(currentElement.premiumPrice);
-          myValues4.push(currentElement.dieselPrice);
+          myValues.push(currentElement.regularPrice.replace('$', ''));
+          myValues2.push(currentElement.midGradePrice.replace('$', ''));
+          myValues3.push(currentElement.premiumPrice.replace('$', ''));
+          myValues4.push(currentElement.dieselPrice.replace('$', ''));
         });
+
+        console.log(myLabels);
+        console.log(myValues);
+        console.log(myValues2);
+        console.log(myValues3);
+        console.log(myValues4);
 
         setData({
           labels: myLabels,
