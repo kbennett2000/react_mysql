@@ -57,6 +57,16 @@ let dbBiden = mysql.createPool({
   queueLimit: 0,
 });
 
+let dbGasPrices = mysql.createPool({
+  host: "192.168.0.235",
+  user: "testUser",
+  password: "password1",
+  database: "GasPriceDB",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+});
+
 app.get("/HamConditions", async (req, res) => {
   const promise = dbHam.promise();
   const query = "SELECT * FROM ConditionReports ORDER BY date_time DESC LIMIT 24";
@@ -105,6 +115,20 @@ app.get("/BidenChartData", async (req, res) => {
   const query = "SELECT * FROM (SELECT * FROM Biden538DB.BidenApproval ORDER BY reportDate DESC, date DESC, time DESC) AS entireDataSet ORDER BY reportDate ASC";
   const [rows, fields] = await promise.execute(query);
   return res.status(200).json({ BidenApproval: rows });
+});
+
+app.get("/GasPriceData", async (req, res) => {
+  const promise = dbGasPrices.promise();
+  const query = "SELECT * FROM GasPriceDB.GasPrices ORDER BY date DESC, time DESC LIMIT 90";
+  const [rows, fields] = await promise.execute(query);
+  return res.status(200).json({ GasPrices: rows });
+});
+
+app.get("/GasPriceChartData", async (req, res) => {
+  const promise = dbBiden.promise();
+  const query = "SELECT * FROM (SELECT * FROM GasPriceDB.GasPrices ORDER BY date DESC, time DESC) AS entireDataSet ORDER BY date ASC, time ASC";
+  const [rows, fields] = await promise.execute(query);
+  return res.status(200).json({ GasPrices: rows });
 });
 
 app.listen(8800, "0.0.0.0", () => {
