@@ -19,7 +19,7 @@ const EconomicsControl = () => {
 
       <div className="tab-content mt-4">
         {activeTab === 1 && <GasPrices />}
-        {activeTab === 1 && <GasPricesChart />}
+        {activeTab === 2 && <GasPricesChart />}
       </div>
     </div>
   );
