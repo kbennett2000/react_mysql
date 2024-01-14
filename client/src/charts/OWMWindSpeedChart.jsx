@@ -44,11 +44,13 @@ const OWMWindSpeedChart = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(dataEndpointLocation);
-        setConditions(res.data.ConditionReports);
 
+        // TODO: Change table name if needed
+        setConditions(res.data.ConditionReports);
         const myLabels = [];
         const myValues = [];
 
+        // TODO: Change table name if needed
         // TODO: Edit charted items here
         res.data.ConditionReports.forEach((currentElement) => {
           myLabels.push(currentElement.date + " - " + currentElement.time);
@@ -84,3 +86,4 @@ const OWMWindSpeedChart = () => {
 
 // TODO: Change control name
 export default OWMWindSpeedChart;
+
