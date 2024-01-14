@@ -6,14 +6,14 @@ import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
 // TODO: Edit config parameters
-const chartTitle = "Joe Biden's 90 Day Approval Rating";
+const chartTitle = "Joe Biden's Approval Rating";
 const chartLabel = "Approve";
 const chartLabel2 = "Disapprove";
 const chartBorderColor = "rgb(53, 162, 235)";
 const chartBackgroundColor = "rgba(53, 162, 235, 0.5)";
 const chartBorderColor2 = "rgb(255, 99, 132)";
 const chartBackgroundColor2 = "rgba(255, 99, 132, 0.5)";
-const dataEndpointLocation = "http://192.168.0.235:8800/BidenData";
+const dataEndpointLocation = "http://192.168.0.235:8800/BidenChartData";
 
 export const options = {
   responsive: true,
