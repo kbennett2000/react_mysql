@@ -65,7 +65,7 @@ const BidenApprovalChart = () => {
         res.data.BidenApproval.forEach((currentElement) => {
           myLabels.push(currentElement.reportDate);
           myValues.push(currentElement.approveEstimate);
-          myValues2.push(currentElement.disapproveEstimate * -1);
+          myValues2.push(currentElement.disapproveEstimate);
         });
 
         setData({
