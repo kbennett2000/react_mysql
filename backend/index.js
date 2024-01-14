@@ -100,6 +100,13 @@ app.get("/BidenData", async (req, res) => {
   return res.status(200).json({ BidenApproval: rows });
 });
 
+app.get("/BidenChartData", async (req, res) => {
+  const promise = dbBiden.promise();
+  const query = "SELECT * FROM Biden538DB.BidenApproval ORDER BY reportDate ASC, date ASC, time ASC LIMIT 90";
+  const [rows, fields] = await promise.execute(query);
+  return res.status(200).json({ BidenApproval: rows });
+});
+
 app.listen(8800, "0.0.0.0", () => {
   console.log("Connected to backend");
 });
