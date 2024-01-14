@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+// TODO: Edit config parameters
+const dataEndpointLocation = "http://192.168.0.235:8800/WeatherConditions";
+const pageTitle = "Weather Conditions";
+
+// TODO: Change page name
 const WeatherConditions = () => {
   const [conditions, setConditions] = useState([]);
   const [expandedRows, setExpandedRows] = useState([]);
 
-  useEffect(() => {
-    async function fetch() {
-      try {
-        const res = await axios.get(
-          "http://192.168.0.235:8800/WeatherConditions"
-        );
-        setConditions(res.data.ConditionReports);
-      } catch (err) {
-        console.log(err);
-      }
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(dataEndpointLocation);
+      // TODO: Change table name if needed
+      setConditions(res.data.ConditionReports);
+    } catch (err) {
+      console.log(err);
     }
-    fetch();
+  };
+
+  useEffect(() => {
+    fetchData(); // Initial fetch
+
+    // TODO: Adjust 1 minute refresh internal if needed
+    const interval = setInterval(fetchData, 1 * 60 * 1000);
+    return () => clearInterval(interval); // Clear the interval on component unmount
   }, []);
 
   const toggleRow = (index) => {
@@ -193,6 +202,8 @@ const WeatherConditions = () => {
       </div>
     </>
   );
+  
 };
 
+// TODO: Change page name
 export default WeatherConditions;
