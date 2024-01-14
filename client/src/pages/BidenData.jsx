@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+// TODO: Edit config parameters
+const dataEndpointLocation = "http://192.168.0.235:8800/BidenData";
+const pageTitle = "Biden's Approval Rating";
+
+// TODO: Change page name
 const BidenData = () => {
   const [conditions, setConditions] = useState([]);
   const [expandedRows, setExpandedRows] = useState([]);
 
-  useEffect(() => {
-    async function fetch() {
-      try {
-        const res = await axios.get(
-          "http://192.168.0.235:8800/BidenData"
-        );
-        setConditions(res.data.BidenApproval);
-      } catch (err) {
-        console.log(err);
-      }
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(dataEndpointLocation);
+      // TODO: Change table name if needed
+      setConditions(res.data.BidenApproval);
+    } catch (err) {
+      console.log(err);
     }
-    fetch();
+  };
+
+  useEffect(() => {
+    fetchData(); // Initial fetch
+
+    // TODO: Adjust 1 minute refresh internal if needed
+    const interval = setInterval(fetchData, 1 * 60 * 1000);
+    return () => clearInterval(interval); // Clear the interval on component unmount
   }, []);
 
   const toggleRow = (index) => {
@@ -29,7 +38,7 @@ const BidenData = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold mb-4">Biden Approval Rating</h1>
+      <h1 className="text-3xl font-bold mb-4">{pageTitle}</h1>
       <div class="mx-auto">
         <div class="flex flex-col">
           <div class="overflow-x-auto shadow-md sm:rounded-lg">
@@ -48,14 +57,7 @@ const BidenData = () => {
                   <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                     {conditions.map((condition, index) => (
                       <React.Fragment key={index}>
-                        <tr
-                          className={`hover:bg-green-100 dark:hover:bg-green-700 ${
-                            index % 2 === 0
-                              ? "bg-gray-200 dark:bg-gray-500"
-                              : ""
-                          }`}
-                          onClick={() => toggleRow(index)}
-                        >
+                        <tr className={`hover:bg-green-100 dark:hover:bg-green-700 ${index % 2 === 0 ? "bg-gray-200 dark:bg-gray-500" : "" }`} onClick={() => toggleRow(index)}>
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.date}</td>
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.time}</td>
                           <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.reportDate}</td>
@@ -93,6 +95,8 @@ const BidenData = () => {
       </div>
     </>
   );
+  
 };
 
+// TODO: Change page name
 export default BidenData;
