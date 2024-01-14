@@ -44,11 +44,13 @@ const OWMCloudinessChart = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(dataEndpointLocation);
+        
+        // TODO: Change table name if needed
         setConditions(res.data.ConditionReports);
-
         const myLabels = [];
         const myValues = [];
 
+        // TODO: Change table name if needed
         // TODO: Edit charted items here
         res.data.ConditionReports.forEach((currentElement) => {
           myLabels.push(currentElement.date + " - " + currentElement.time);
