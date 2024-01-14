@@ -95,7 +95,7 @@ app.get("/OWMChartData", async (req, res) => {
 
 app.get("/BidenData", async (req, res) => {
   const promise = dbBiden.promise();
-  const query = "SELECT * FROM Biden538DB.BidenApproval ORDER BY date DESC, time DESC LIMIT 90";
+  const query = "SELECT * FROM Biden538DB.BidenApproval ORDER BY reportDate DESC, date DESC, time DESC LIMIT 90";
   const [rows, fields] = await promise.execute(query);
   return res.status(200).json({ BidenApproval: rows });
 });
