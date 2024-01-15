@@ -13,7 +13,7 @@ const chartBorderColor = "rgb(53, 162, 235)";
 const chartBackgroundColor = "rgba(53, 162, 235, 0.5)";
 const chartBorderColor2 = "rgb(255, 99, 132)";
 const chartBackgroundColor2 = "rgba(255, 99, 132, 0.5)";
-const dataEndpointLocation = "http://192.168.0.235:8800/BidenChartData";
+const dataEndpointLocation = "http://192.168.1.85:8800/BidenChartData";
 
 export const options = {
   responsive: true,
