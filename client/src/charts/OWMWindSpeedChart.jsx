@@ -10,7 +10,7 @@ const chartTitle = "24 Hour Wind Speed Report";
 const chartLabel = "Wind Speed";
 const chartBorderColor = "rgb(0, 34, 204)";
 const chartBackgroundColor = "rgba(0, 34, 204, 0.5)";
-const dataEndpointLocation = "http://192.168.0.235:8800/OWMChartData";
+const dataEndpointLocation = "http://192.168.1.85:8800/OWMChartData";
 
 export const options = {
   responsive: true,
