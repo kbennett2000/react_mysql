@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 // TODO: Edit config parameters
-const dataEndpointLocation = "http://192.168.0.235:8800/OWMConditions";
+const dataEndpointLocation = "http://192.168.1.85:8800/OWMConditions";
 const pageTitle = "Weather Conditions from OpenWeatherMap";
 
 // TODO: Change page name
