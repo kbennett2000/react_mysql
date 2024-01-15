@@ -175,7 +175,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 // TODO: Edit config parameters
-const dataEndpointLocation = "http://192.168.0.235:8800/PiStarConditions";
+const dataEndpointLocation = "http://192.168.1.85:8800/PiStarConditions";
 const pageTitle = "PiStar Conditions";
 
 // TODO: Change page name
