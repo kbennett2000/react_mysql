@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 // TODO: Edit config parameters
-const dataEndpointLocation = "http://192.168.0.235:8800/BidenData";
+const dataEndpointLocation = "http://192.168.1.85:8800/BidenData";
 const pageTitle = "Biden's Approval Rating";
 
 // TODO: Change page name
