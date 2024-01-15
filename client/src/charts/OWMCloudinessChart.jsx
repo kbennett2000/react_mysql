@@ -10,7 +10,7 @@ const chartTitle = "24 Cloudiness Report";
 const chartLabel = "Cloudiness";
 const chartBorderColor = "rgb(204, 136, 0)";
 const chartBackgroundColor = "rgba(204, 136, 0, 0.5)";
-const dataEndpointLocation = "http://192.168.0.235:8800/OWMChartData";
+const dataEndpointLocation = "http://192.168.1.85:8800/OWMChartData";
 
 export const options = {
   responsive: true,
