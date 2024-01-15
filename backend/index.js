@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 let dbHam = mysql.createPool({
-  host: "192.168.0.235",
+  host: "192.168.1.85",
   user: "testUser",
   password: "password1",
   database: "HamConditionsDB",
@@ -18,7 +18,7 @@ let dbHam = mysql.createPool({
 });
 
 let dbWeather = mysql.createPool({
-  host: "192.168.0.235",
+  host: "192.168.1.85",
   user: "testUser",
   password: "password1",
   database: "WeatherConditionsDB",
@@ -28,7 +28,7 @@ let dbWeather = mysql.createPool({
 });
 
 let dbPiStar = mysql.createPool({
-  host: "192.168.0.235",
+  host: "192.168.1.85",
   user: "testUser",
   password: "password1",
   database: "PiStarConditionsDB",
@@ -38,7 +38,7 @@ let dbPiStar = mysql.createPool({
 });
 
 let dbOWM = mysql.createPool({
-  host: "192.168.0.235",
+  host: "192.168.1.85",
   user: "testUser",
   password: "password1",
   database: "OWMConditionsDB",
@@ -48,7 +48,7 @@ let dbOWM = mysql.createPool({
 });
 
 let dbBiden = mysql.createPool({
-  host: "192.168.0.235",
+  host: "192.168.1.85",
   user: "testUser",
   password: "password1",
   database: "Biden538DB",
@@ -58,7 +58,7 @@ let dbBiden = mysql.createPool({
 });
 
 let dbGasPrices = mysql.createPool({
-  host: "192.168.0.235",
+  host: "192.168.1.85",
   user: "testUser",
   password: "password1",
   database: "GasPriceDB",
