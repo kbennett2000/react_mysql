@@ -10,7 +10,7 @@ const chartTitle = "24 Hour Humidity Report";
 const chartLabel = "Relative Humidity";
 const chartBorderColor = "rgb(0, 128, 0)";
 const chartBackgroundColor = "rgba(0, 128, 0, 0.5)";
-const dataEndpointLocation = "http://192.168.0.235:8800/OWMChartData";
+const dataEndpointLocation = "http://192.168.1.85:8800/OWMChartData";
 
 export const options = {
   responsive: true,
