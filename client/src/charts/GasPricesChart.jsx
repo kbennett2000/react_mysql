@@ -19,7 +19,7 @@ const chartBorderColor3 = "rgb(0, 85, 255)";
 const chartBackgroundColor3 = "rgba(0, 85, 255, 0.5)";
 const chartBorderColor4 = "rgb(0, 128, 0)";
 const chartBackgroundColor4 = "rgba(0, 128, 0, 0.5)";
-const dataEndpointLocation = "http://192.168.0.235:8800/GasPriceChartData";
+const dataEndpointLocation = "http://192.168.1.85:8800/GasPriceChartData";
 
 export const options = {
   responsive: true,
