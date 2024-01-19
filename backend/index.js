@@ -74,6 +74,13 @@ app.get("/HamConditions", async (req, res) => {
   return res.status(200).json({ ConditionReports: rows });
 });
 
+app.get("/HamConditionsChartData", async (req, res) => {
+  const promise = dbHam.promise();
+  const query = "SELECT * FROM ConditionReports ORDER BY date_time LIMIT 168";
+  const [rows, fields] = await promise.execute(query);
+  return res.status(200).json({ ConditionReports: rows });
+});
+
 app.get("/WeatherConditions", async (req, res) => {
   const promise = dbWeather.promise();
   const query =
