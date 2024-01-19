@@ -119,45 +119,45 @@ const HamConditions = () => {
                           }`}
                           onClick={() => toggleRow(index)}
                         >
-                          <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition.date_time}
                           </td>
-                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["80m_40m_Day"] === "Good" && goodEmoji}
                             {condition["80m_40m_Day"] === "Fair" && fairEmoji}
                             {condition["80m_40m_Day"] === "Poor" && poorEmoji}
                           </td>
-                          <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["80m_40m_Night"] === "Good" && goodEmoji}
                             {condition["80m_40m_Night"] === "Fair" && fairEmoji}
                             {condition["80m_40m_Night"] === "Poor" && poorEmoji}
                           </td>
-                          <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["30m_20m_Day"] === "Good" && goodEmoji}
                             {condition["30m_20m_Day"] === "Fair" && fairEmoji}
                             {condition["30m_20m_Day"] === "Poor" && poorEmoji}
                           </td>
-                          <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["30m_20m_Night"] === "Good" && goodEmoji}
                             {condition["30m_20m_Night"] === "Fair" && fairEmoji}
                             {condition["30m_20m_Night"] === "Poor" && poorEmoji}
                           </td>
-                          <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["17m_15m_Day"] === "Good" && goodEmoji}
                             {condition["17m_15m_Day"] === "Fair" && fairEmoji}
                             {condition["17m_15m_Day"] === "Poor" && poorEmoji}                            
                           </td>
-                          <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["17m_15m_Night"] === "Good" && goodEmoji}
                             {condition["17m_15m_Night"] === "Fair" && fairEmoji}
                             {condition["17m_15m_Night"] === "Poor" && poorEmoji}
                           </td>
-                          <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["12m_10m_Day"] === "Good" && goodEmoji}
                             {condition["12m_10m_Day"] === "Fair" && fairEmoji}
                             {condition["12m_10m_Day"] === "Poor" && poorEmoji}
                           </td>
-                          <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["12m_10m_Night"] === "Good" && goodEmoji}
                             {condition["12m_10m_Night"] === "Fair" && fairEmoji}
                             {condition["12m_10m_Night"] === "Poor" && poorEmoji}
@@ -169,36 +169,11 @@ const HamConditions = () => {
                               <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
                                 <thead class="bg-green-100 dark:bg-green-700">
                                   <tr>
-                                    <th
-                                      scope="col"
-                                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                                    >
-                                      Sunspot Number
-                                    </th>
-                                    <th
-                                      scope="col"
-                                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                                    >
-                                      Solar Flux
-                                    </th>
-                                    <th
-                                      scope="col"
-                                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                                    >
-                                      Geomagnetic Storm
-                                    </th>
-                                    <th
-                                      scope="col"
-                                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                                    >
-                                      Solar Wind
-                                    </th>
-                                    <th
-                                      scope="col"
-                                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                                    >
-                                      Noise Floor
-                                    </th>
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Sunspot Number</th>
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Solar Flux</th>
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Geomagnetic Storm</th>
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Solar Wind</th>
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Noise Floor</th>
                                   </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
