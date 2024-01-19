@@ -1,28 +1,28 @@
 # CHARTS
 
-##BidenApprovalChart
+## BidenApprovalChart
 - Charts Biden's approval and disapproval ratings
 
-##GasPricesChart
+## GasPricesChart
 - Charts AAA daily gas/diesel prices for Colorado
 
-##HAMSolarFluxChart
+## HAMSolarFluxChart
 - Charts 20cm Solar Flux value
 
-##HAMSolarWindChart
+## HAMSolarWindChart
 - Charts Solar Wind value
 
-##HAMSunspotNumberChart
+## HAMSunspotNumberChart
 - Charts Sunspot number
 
-##OWMCloudinessChart
+## OWMCloudinessChart
 - Charts cloudiness levels
 
-##OWMHumidityChart
+## OWMHumidityChart
 - Charts humidity levels
 
-##OWMTempChart
+## OWMTempChart
 - Charts real temperature and 'feels like' temperature
 
-##OWMWindSpeedChart
+## OWMWindSpeedChart
 - Charts wind speed
