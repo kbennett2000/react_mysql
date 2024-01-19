@@ -6,7 +6,7 @@ import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
 // TODO: Edit config parameters
-const chartTitle = "24 Temperature Report";
+const chartTitle = "24 Hour Temperature Report";
 const chartLabel = "Temperature";
 const chartLabel2 = "Feels Like";
 const chartBorderColor = "rgb(255, 99, 132)";
