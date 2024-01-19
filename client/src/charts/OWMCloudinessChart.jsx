@@ -6,7 +6,7 @@ import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
 // TODO: Edit config parameters
-const chartTitle = "24 Cloudiness Report";
+const chartTitle = "24 Hour Cloudiness Report";
 const chartLabel = "Cloudiness";
 const chartBorderColor = "rgb(204, 136, 0)";
 const chartBackgroundColor = "rgba(204, 136, 0, 0.5)";
