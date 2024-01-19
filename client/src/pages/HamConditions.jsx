@@ -44,71 +44,71 @@ const HamConditions = () => {
   return (
     <>
       <h1 className="text-3xl font-bold mb-4">Ham Conditions</h1>
-      <div class="mx-auto">
-        <div class="flex flex-col">
-          <div class="overflow-x-auto shadow-md sm:rounded-lg">
-            <div class="inline-block min-w-full align-middle">
-              <div class="overflow-hidden ">
-                <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
-                  <thead class="bg-blue-100 dark:bg-blue-700">
+      <div className="mx-auto">
+        <div className="flex flex-col">
+          <div className="overflow-x-auto shadow-md sm:rounded-lg">
+            <div className="inline-block min-w-full align-middle">
+              <div className="overflow-hidden ">
+                <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
+                  <thead className="bg-blue-100 dark:bg-blue-700">
                     <tr>
                       <th
                         scope="col"
-                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
+                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                       >
                         Time
                       </th>
                       <th
                         scope="col"
-                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
+                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                       >
                         80m-40m Day
                       </th>
                       <th
                         scope="col"
-                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
+                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                       >
                         80m-40m Night
                       </th>
                       <th
                         scope="col"
-                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
+                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                       >
                         30m-20m Day
                       </th>
                       <th
                         scope="col"
-                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
+                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                       >
                         30m-20m Night
                       </th>
                       <th
                         scope="col"
-                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
+                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                       >
                         17m-15m Day
                       </th>
                       <th
                         scope="col"
-                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
+                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                       >
                         17m-15m Night
                       </th>
                       <th
                         scope="col"
-                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
+                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                       >
                         12m-10m Day
                       </th>
                       <th
                         scope="col"
-                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
+                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
                       >
                         12m-10m Night
                       </th>
                     </tr>
                   </thead>
-                  <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                  <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                     {conditions.map((condition, index) => (
                       <React.Fragment key={index}>
                         <tr
@@ -119,7 +119,7 @@ const HamConditions = () => {
                           }`}
                           onClick={() => toggleRow(index)}
                         >
-                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition.date_time}
                           </td>
                           <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -127,37 +127,37 @@ const HamConditions = () => {
                             {condition["80m_40m_Day"] === "Fair" && fairEmoji}
                             {condition["80m_40m_Day"] === "Poor" && poorEmoji}
                           </td>
-                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["80m_40m_Night"] === "Good" && goodEmoji}
                             {condition["80m_40m_Night"] === "Fair" && fairEmoji}
                             {condition["80m_40m_Night"] === "Poor" && poorEmoji}
                           </td>
-                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["30m_20m_Day"] === "Good" && goodEmoji}
                             {condition["30m_20m_Day"] === "Fair" && fairEmoji}
                             {condition["30m_20m_Day"] === "Poor" && poorEmoji}
                           </td>
-                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["30m_20m_Night"] === "Good" && goodEmoji}
                             {condition["30m_20m_Night"] === "Fair" && fairEmoji}
                             {condition["30m_20m_Night"] === "Poor" && poorEmoji}
                           </td>
-                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["17m_15m_Day"] === "Good" && goodEmoji}
                             {condition["17m_15m_Day"] === "Fair" && fairEmoji}
                             {condition["17m_15m_Day"] === "Poor" && poorEmoji}                            
                           </td>
-                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["17m_15m_Night"] === "Good" && goodEmoji}
                             {condition["17m_15m_Night"] === "Fair" && fairEmoji}
                             {condition["17m_15m_Night"] === "Poor" && poorEmoji}
                           </td>
-                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["12m_10m_Day"] === "Good" && goodEmoji}
                             {condition["12m_10m_Day"] === "Fair" && fairEmoji}
                             {condition["12m_10m_Day"] === "Poor" && poorEmoji}
                           </td>
-                          <td class="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["12m_10m_Night"] === "Good" && goodEmoji}
                             {condition["12m_10m_Night"] === "Fair" && fairEmoji}
                             {condition["12m_10m_Night"] === "Poor" && poorEmoji}
@@ -165,36 +165,36 @@ const HamConditions = () => {
                         </tr>
                         {expandedRows[index] && (
                           <tr>
-                            <td colspan="12" class="p-4">
-                              <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
-                                <thead class="bg-green-100 dark:bg-green-700">
+                            <td colspan="12" className="p-4">
+                              <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
+                                <thead className="bg-green-100 dark:bg-green-700">
                                   <tr>
-                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Sunspot Number</th>
-                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Solar Flux</th>
-                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Geomagnetic Storm</th>
-                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Solar Wind</th>
-                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Noise Floor</th>
+                                    <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Sunspot Number</th>
+                                    <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Solar Flux</th>
+                                    <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Geomagnetic Storm</th>
+                                    <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Solar Wind</th>
+                                    <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Noise Floor</th>
                                   </tr>
                                 </thead>
-                                <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                                <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                                   <tr>
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                       {condition.sunspot_number}
                                     </td>
 
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                       {condition.solar_flux}
                                     </td>
 
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                       {condition.geomagnetic_storm}
                                     </td>
 
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                       {condition.solar_wind}
                                     </td>
 
-                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                       {condition.noise_floor}
                                     </td>
                                   </tr>
