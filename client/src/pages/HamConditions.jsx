@@ -131,7 +131,6 @@ const HamConditions = () => {
                             {condition["80m_40m_Night"] === "Good" && goodEmoji}
                             {condition["80m_40m_Night"] === "Fair" && fairEmoji}
                             {condition["80m_40m_Night"] === "Poor" && poorEmoji}
-                            {fairEmoji}
                           </td>
                           <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {condition["30m_20m_Day"] === "Good" && goodEmoji}
