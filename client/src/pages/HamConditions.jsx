@@ -6,9 +6,12 @@ const dataEndpointLocation = "http://192.168.1.85:8800/HamConditions";
 const pageTitle = "Ham Band Conditions";
 
 // TODO: Change emojis if needed
-const goodEmoji = '😍';
+//const goodEmoji = '😍';
 const fairEmoji = '🫤';
-const poorEmoji = '💩';
+
+const poorEmoji = '🫤';
+const goodEmoji = '🫤';
+//const poorEmoji = '💩';
 
 // TODO: Change page name
 const HamConditions = () => {
