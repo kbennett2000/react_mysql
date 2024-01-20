@@ -7,7 +7,8 @@ const pageTitle = "Ham Band Conditions";
 
 // TODO: Change emojis if needed
 const goodEmoji = '😍';
-const fairEmoji = '🫤';
+//const fairEmoji = '🫤';
+const fairEmoji = '👺';
 const poorEmoji = '💩';
 
 // TODO: Change page name
