@@ -52,60 +52,15 @@ const HamConditions = () => {
                 <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
                   <thead className="bg-blue-100 dark:bg-blue-700">
                     <tr>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        Time
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        80m-40m Day
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        80m-40m Night
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        30m-20m Day
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        30m-20m Night
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        17m-15m Day
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        17m-15m Night
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        12m-10m Day
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        12m-10m Night
-                      </th>
+                      <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Time</th>
+                      <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">80m-40m Day</th>
+                      <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">80m-40m Night</th>
+                      <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">30m-20m Day</th>
+                      <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">30m-20m Night</th>
+                      <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">17m-15m Day</th>
+                      <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">17m-15m Night</th>
+                      <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">12m-10m Day</th>
+                      <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">12m-10m Night</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
@@ -178,25 +133,11 @@ const HamConditions = () => {
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                                   <tr>
-                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.sunspot_number}
-                                    </td>
-
-                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.solar_flux}
-                                    </td>
-
-                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.geomagnetic_storm}
-                                    </td>
-
-                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.solar_wind}
-                                    </td>
-
-                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.noise_floor}
-                                    </td>
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.sunspot_number}</td>
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.solar_flux}</td>
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.geomagnetic_storm}</td>
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.solar_wind}</td>
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.noise_floor}</td>
                                   </tr>
                                 </tbody>
                               </table>
