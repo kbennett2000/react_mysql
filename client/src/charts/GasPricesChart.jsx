@@ -71,9 +71,7 @@ const GasPricesChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const address = `http://${ServerIPAddress}:${ServerPort}/${GasPriceChartDataEndpointSuffix}`;
-        console.log("ADDRESS IS " + address);
-        const res = await axios.get(address);
+        const res = await axios.get(`http://${ServerIPAddress}:${ServerPort}/${GasPriceChartDataEndpointSuffix}`);
 
         // TODO: Change table name if needed
         setConditions(res.data.GasPrices);
