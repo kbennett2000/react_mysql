@@ -140,6 +140,6 @@ app.get("/GasPriceChartData", async (req, res) => {
   return res.status(200).json({ GasPrices: rows });
 });
 
-app.listen(8800, "0.0.0.0", () => {
+app.listen(ServerPort, "0.0.0.0", () => {
   console.log("Connected to backend");
 });
