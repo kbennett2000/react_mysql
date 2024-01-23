@@ -4,7 +4,7 @@ import { Line, Bar } from "react-chartjs-2";
 import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend,} from "chart.js";
 
 import config from '../config';
-const { DataEndpointAddress, FetchInterval, HamConditionsChartDataEndpointSuffix, HamSolarFluxChartTitle } = config;
+const { ServerIPAddress, ServerPort, FetchInterval, HamConditionsChartDataEndpointSuffix, HamSolarFluxChartTitle } = config;
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -44,7 +44,7 @@ const HAMSolarFluxChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(DataEndpointAddress + HamConditionsChartDataEndpointSuffix);
+        const res = await axios.get(`http://${ServerIPAddress}:${ServerPort}/${HamConditionsChartDataEndpointSuffix}`);
 
         // TODO: Change table name if needed
         setConditions(res.data.ConditionReports);

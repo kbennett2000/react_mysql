@@ -5,7 +5,6 @@ const config = {
     ServerPassword: "password1",
     ServerIPAddress: "192.168.1.85",
     ServerPort: 8800,
-    DataEndpointAddress: `http://${ServerIPAddress}:${ServerPort}/`,
     
     // Page Data Endpoint Suffixes
     WeatherConditionsEndpointSuffix: "WeatherConditions", 

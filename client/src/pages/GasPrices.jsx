@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from '../config';
 
-const { DataEndpointAddress, FetchInterval, GasPricesEndpointSuffix, GasPricesPageTitle } = config;
+const { ServerIPAddress, ServerPort, FetchInterval, GasPricesEndpointSuffix, GasPricesPageTitle } = config;
 
 const GasPrices = () => {
   const [conditions, setConditions] = useState([]);
@@ -10,7 +10,7 @@ const GasPrices = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(DataEndpointAddress + GasPricesEndpointSuffix);
+      const res = await axios.get(`http://${ServerIPAddress}:${ServerPort}/${GasPricesEndpointSuffix}`);
       // TODO: Change table name if needed
       setConditions(res.data.GasPrices);
     } catch (err) {

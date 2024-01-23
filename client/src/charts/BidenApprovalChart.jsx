@@ -4,7 +4,7 @@ import { Line, Bar } from "react-chartjs-2";
 import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend,} from "chart.js";
 
 import config from '../config';
-const { DataEndpointAddress, FetchInterval, BidenChartDataEndpointSuffix, BidenApprovalChartTitle } = config;
+const { ServerIPAddress, ServerPort, FetchInterval, BidenChartDataEndpointSuffix, BidenApprovalChartTitle } = config;
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -53,7 +53,7 @@ const BidenApprovalChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(DataEndpointAddress + BidenChartDataEndpointSuffix);
+        const res = await axios.get(`http://${ServerIPAddress}:${ServerPort}/${BidenChartDataEndpointSuffix}`);
         
         // TODO: Change table name if needed
         setConditions(res.data.BidenApproval);

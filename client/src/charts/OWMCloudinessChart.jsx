@@ -4,7 +4,7 @@ import { Line, Bar } from "react-chartjs-2";
 import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend,} from "chart.js";
 
 import config from '../config';
-const { DataEndpointAddress, FetchInterval, OWMChartDataEndpointSuffix, OWMCloudinessChartTitle } = config;
+const { ServerIPAddress, ServerPort, FetchInterval, OWMChartDataEndpointSuffix, OWMCloudinessChartTitle } = config;
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -44,7 +44,7 @@ const OWMCloudinessChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(DataEndpointAddress + OWMChartDataEndpointSuffix);
+        const res = await axios.get(`http://${ServerIPAddress}:${ServerPort}/${OWMChartDataEndpointSuffix}`);
         
         // TODO: Change table name if needed
         setConditions(res.data.ConditionReports);

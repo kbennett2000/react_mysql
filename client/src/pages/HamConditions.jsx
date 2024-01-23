@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from '../config';
 
-const { DataEndpointAddress, FetchInterval, HamConditionsEndpointSuffix, HamConditionsPageTitle, GoodEmoji, FairEmoji, PoorEmoji } = config;
+const { ServerIPAddress, ServerPort, FetchInterval, HamConditionsEndpointSuffix, HamConditionsPageTitle, GoodEmoji, FairEmoji, PoorEmoji } = config;
 
 // TODO: Change emojis if needed
 
@@ -12,7 +12,8 @@ const HamConditions = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(DataEndpointAddress + HamConditionsEndpointSuffix);
+      const res = await axios.get(`http://${ServerIPAddress}:${ServerPort}/${HamConditionsEndpointSuffix}`);
+
       // TODO: Change table name if needed
       setConditions(res.data.ConditionReports);
     } catch (err) {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from '../config';
 
-const { DataEndpointAddress, FetchInterval, OWMConditionsEndpointSuffix, OWMConditionsPageTitle } = config;
+const { ServerIPAddress, ServerPort, FetchInterval, OWMConditionsEndpointSuffix, OWMConditionsPageTitle } = config;
 
 const OWMConditions = () => {
   const [conditions, setConditions] = useState([]);
@@ -10,7 +10,8 @@ const OWMConditions = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(DataEndpointAddress + OWMConditionsEndpointSuffix);
+      const res = await axios.get(`http://${ServerIPAddress}:${ServerPort}/${OWMConditionsEndpointSuffix}`);
+
       // TODO: Change table name if needed
       setConditions(res.data.ConditionReports);
     } catch (err) {

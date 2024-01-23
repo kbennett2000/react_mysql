@@ -4,7 +4,7 @@ import { Line, Bar } from "react-chartjs-2";
 import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend,} from "chart.js";
 
 import config from '../config';
-const { DataEndpointAddress, FetchInterval, GasPriceChartDataEndpointSuffix, GasPriceChartTitle } = config;
+const { ServerIPAddress, ServerPort, FetchInterval, GasPriceChartDataEndpointSuffix, GasPriceChartTitle } = config;
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -71,7 +71,9 @@ const GasPricesChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(DataEndpointAddress + GasPriceChartDataEndpointSuffix);
+        const address = `http://${ServerIPAddress}:${ServerPort}/${GasPriceChartDataEndpointSuffix}`;
+        console.log("ADDRESS IS " + address);
+        const res = await axios.get(address);
 
         // TODO: Change table name if needed
         setConditions(res.data.GasPrices);

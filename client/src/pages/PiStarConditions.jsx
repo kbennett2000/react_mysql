@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from '../config';
 
-const { DataEndpointAddress, FetchInterval, PiStarConditionsEndpointSuffix, PiStarConditionsPageTitle } = config;
+const { ServerIPAddress, ServerPort, FetchInterval, PiStarConditionsEndpointSuffix, PiStarConditionsPageTitle } = config;
 
 const PiStarConditions = () => {
   const [conditions, setConditions] = useState([]);
@@ -10,7 +10,8 @@ const PiStarConditions = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(DataEndpointAddress + PiStarConditionsEndpointSuffix);
+      const res = await axios.get(`http://${ServerIPAddress}:${ServerPort}/${PiStarConditionsEndpointSuffix}`);
+
       // TODO: Change table name if needed
       setConditions(res.data.ConditionReports);
     } catch (err) {

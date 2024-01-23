@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from '../config';
 
-const { DataEndpointAddress, FetchInterval, BidenDataEndpointSuffix, BidenDataPageTitle } = config;
+const { ServerIPAddress, ServerPort, FetchInterval, BidenDataEndpointSuffix, BidenDataPageTitle } = config;
 
 const BidenData = () => {
   const [conditions, setConditions] = useState([]);
@@ -10,7 +10,8 @@ const BidenData = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(DataEndpointAddress + BidenDataEndpointSuffix);
+      const res = await axios.get(`http://${ServerIPAddress}:${ServerPort}/${BidenDataEndpointSuffix}`);
+
       // TODO: Change table name if needed
       setConditions(res.data.BidenApproval);
     } catch (err) {

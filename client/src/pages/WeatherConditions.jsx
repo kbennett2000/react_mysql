@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from '../config';
 
-const { DataEndpointAddress, FetchInterval, WeatherConditionsEndpointSuffix, WeatherConditionsPageTitle } = config;
+const { ServerIPAddress, ServerPort, FetchInterval, WeatherConditionsEndpointSuffix, WeatherConditionsPageTitle } = config;
 
 const WeatherConditions = () => {  
   const [conditions, setConditions] = useState([]);
@@ -10,7 +10,7 @@ const WeatherConditions = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(DataEndpointAddress + WeatherConditionsEndpointSuffix);
+      const res = await axios.get(`http://${ServerIPAddress}:${ServerPort}/${WeatherConditionsEndpointSuffix}`);
       setConditions(res.data.ConditionReports);
     } catch (err) {
       console.log(err);
