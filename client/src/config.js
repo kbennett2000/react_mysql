@@ -29,18 +29,17 @@ const config = {
     HamSolarFluxChartTitle: "Solar Flux Chart", 
     HamSolarWindChartTitle: "Solar Wind Chart", 
     HamSunspotNumberChartTitle: "Sunspot Number Chart", 
-
     OWMCloudinessChartTitle: "24 Hour Cloudiness Report", 
     OWMHumidityChartTitle: "24 Hour Humidity Report", 
     OWMTempChartTitle: "24 Hour Temperature Report", 
     OWMWindSpeedChartTitle: "24 Hour Wind Speed Report", 
-
     BidenApprovalChartTitle: "Joe Biden's Approval Rating", 
     GasPriceChartTitle: "Colorado Avg Daily Fuel Prices", 
 
     // Interval for data refresh (minutes)
     FetchInterval: 1 * 60 * 1000,
 
+    // Emojis
     GoodEmoji: '😍', 
     FairEmoji: '😐', 
     PoorEmoji: '💩', 
