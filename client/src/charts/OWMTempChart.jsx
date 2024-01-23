@@ -4,7 +4,7 @@ import { Line, Bar } from "react-chartjs-2";
 import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend,} from "chart.js";
 
 import config from '../config';
-const { DataEndpointAddress, FetchInterval, OWMConditionsEndpointSuffix, OWMTempChartTitle } = config;
+const { DataEndpointAddress, FetchInterval, OWMChartDataEndpointSuffix, OWMTempChartTitle } = config;
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -53,7 +53,7 @@ const OWMTempChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(DataEndpointAddress + OWMConditionsEndpointSuffix);
+        const res = await axios.get(DataEndpointAddress + OWMChartDataEndpointSuffix);
 
         // TODO: Change table name if needed
         setConditions(res.data.ConditionReports);
