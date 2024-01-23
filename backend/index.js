@@ -105,7 +105,7 @@ app.get("/OWMConditions", async (req, res) => {
 
 app.get("/OWMChartData", async (req, res) => {
   const promise = dbOWM.promise();
-  const query = "SELECT * FROM (SELECT * FROM OWMConditionsDB.ConditionReports ORDER BY date ASC, time ASC LIMIT 96) AS top_96 ORDER BY date DESC, time DESC";
+  const query = "SELECT * FROM (SELECT * FROM OWMConditionsDB.ConditionReports ORDER BY date DESC, time DESC LIMIT 96) AS top_96 ORDER BY date ASC, time ASC";
   const [rows, fields] = await promise.execute(query);
   return res.status(200).json({ ConditionReports: rows });
 });
