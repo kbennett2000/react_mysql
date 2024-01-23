@@ -76,7 +76,7 @@ app.get("/HamConditions", async (req, res) => {
 
 app.get("/HamConditionsChartData", async (req, res) => {
   const promise = dbHam.promise();
-  const query = "SELECT * FROM ConditionReports ORDER BY date_time DESC LIMIT 168";
+  const query = "SELECT * FROM ConditionReports ORDER BY date_time ASC LIMIT 168";
   const [rows, fields] = await promise.execute(query);
   return res.status(200).json({ ConditionReports: rows });
 });
