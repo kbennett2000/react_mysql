@@ -1,6 +1,8 @@
 import express from "express";
 import mysql from "mysql2";
 import cors from "cors";
+import config from "../client/src/config";
+const { ServerUserName, ServerPassword, ServerIPAddress, ServerPort } = config;
 
 const app = express();
 
@@ -8,9 +10,9 @@ app.use(express.json());
 app.use(cors());
 
 let dbHam = mysql.createPool({
-  host: "192.168.1.85",
-  user: "testUser",
-  password: "password1",
+  host: ServerIPAddress,
+  user: ServerUserName,
+  password: ServerPassword,
   database: "HamConditionsDB",
   waitForConnections: true,
   connectionLimit: 10,
@@ -18,9 +20,9 @@ let dbHam = mysql.createPool({
 });
 
 let dbWeather = mysql.createPool({
-  host: "192.168.1.85",
-  user: "testUser",
-  password: "password1",
+  host: ServerIPAddress,
+  user: ServerUserName,
+  password: ServerPassword,
   database: "WeatherConditionsDB",
   waitForConnections: true,
   connectionLimit: 10,
@@ -28,9 +30,9 @@ let dbWeather = mysql.createPool({
 });
 
 let dbPiStar = mysql.createPool({
-  host: "192.168.1.85",
-  user: "testUser",
-  password: "password1",
+  host: ServerIPAddress,
+  user: ServerUserName,
+  password: ServerPassword,
   database: "PiStarConditionsDB",
   waitForConnections: true,
   connectionLimit: 10,
@@ -38,9 +40,9 @@ let dbPiStar = mysql.createPool({
 });
 
 let dbOWM = mysql.createPool({
-  host: "192.168.1.85",
-  user: "testUser",
-  password: "password1",
+  host: ServerIPAddress,
+  user: ServerUserName,
+  password: ServerPassword,
   database: "OWMConditionsDB",
   waitForConnections: true,
   connectionLimit: 10,
@@ -48,9 +50,9 @@ let dbOWM = mysql.createPool({
 });
 
 let dbBiden = mysql.createPool({
-  host: "192.168.1.85",
-  user: "testUser",
-  password: "password1",
+  host: ServerIPAddress,
+  user: ServerUserName,
+  password: ServerPassword,
   database: "Biden538DB",
   waitForConnections: true,
   connectionLimit: 10,
@@ -58,9 +60,9 @@ let dbBiden = mysql.createPool({
 });
 
 let dbGasPrices = mysql.createPool({
-  host: "192.168.1.85",
-  user: "testUser",
-  password: "password1",
+  host: ServerIPAddress,
+  user: ServerUserName,
+  password: ServerPassword,
   database: "GasPriceDB",
   waitForConnections: true,
   connectionLimit: 10,
@@ -138,6 +140,6 @@ app.get("/GasPriceChartData", async (req, res) => {
   return res.status(200).json({ GasPrices: rows });
 });
 
-app.listen(8800, "0.0.0.0", () => {
+app.listen(ServerPort, "0.0.0.0", () => {
   console.log("Connected to backend");
 });

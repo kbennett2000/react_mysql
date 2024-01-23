@@ -1,7 +1,11 @@
 // config.js
 const config = {
     // Server address and port
-    DataEndpointAddress: "http://192.168.1.85:8800/",
+    ServerUserName: "testUser",
+    ServerPassword: "password1",
+    ServerIPAddress: "192.168.0.1",
+    ServerPort: 8800,
+    DataEndpointAddress: `http://${ServerIPAddress}:${ServerPort}/`,
     
     // Page Data Endpoint Suffixes
     WeatherConditionsEndpointSuffix: "WeatherConditions", 
