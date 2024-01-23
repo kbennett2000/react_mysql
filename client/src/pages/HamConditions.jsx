@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import config from '../config';
 
-// TODO: Edit config parameters
-const dataEndpointLocation = "http://192.168.1.85:8800/HamConditions";
-const pageTitle = "Ham Band Conditions";
+const { DataEndpointAddress, FetchInterval, HamConditionsEndpointSuffix, HamConditionsPageTitle, GoodEmoji, FairEmoji, PoorEmoji } = config;
 
 // TODO: Change emojis if needed
-const goodEmoji = '😍';
-const fairEmoji = '😐';
-const poorEmoji = '💩';
 
-// TODO: Change page name
 const HamConditions = () => {
   const [conditions, setConditions] = useState([]);
   const [expandedRows, setExpandedRows] = useState([]);
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(dataEndpointLocation);
+      const res = await axios.get(DataEndpointAddress + HamConditionsEndpointSuffix);
       // TODO: Change table name if needed
       setConditions(res.data.ConditionReports);
     } catch (err) {
@@ -28,8 +23,7 @@ const HamConditions = () => {
   useEffect(() => {
     fetchData(); // Initial fetch
 
-    // TODO: Adjust 1 minute refresh internal if needed
-    const interval = setInterval(fetchData, 1 * 60 * 1000);
+    const interval = setInterval(fetchData, FetchInterval);
     return () => clearInterval(interval); // Clear the interval on component unmount
   }, []);
 
@@ -43,7 +37,7 @@ const HamConditions = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold mb-4">Ham Conditions</h1>
+      <h1 className="text-3xl font-bold mb-4">{HamConditionsPageTitle}</h1>
       <div className="mx-auto">
         <div className="flex flex-col">
           <div className="overflow-x-auto shadow-md sm:rounded-lg">
@@ -67,55 +61,47 @@ const HamConditions = () => {
                     {conditions.map((condition, index) => (
                       <React.Fragment key={index}>
                         <tr
-                          className={`hover:bg-green-100 dark:hover:bg-green-700 ${
-                            index % 2 === 0
-                              ? "bg-gray-200 dark:bg-gray-500"
-                              : ""
-                          }`}
-                          onClick={() => toggleRow(index)}
-                        >
+                          className={`hover:bg-green-100 dark:hover:bg-green-700 ${index % 2 === 0 ? "bg-gray-200 dark:bg-gray-500" : ""}`} onClick={() => toggleRow(index)}>
+                          <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.date_time}</td>
                           <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition.date_time}
+                            {condition["80m_40m_Day"] === "Good" && GoodEmoji}
+                            {condition["80m_40m_Day"] === "Fair" && FairEmoji}
+                            {condition["80m_40m_Day"] === "Poor" && PoorEmoji}
                           </td>
                           <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["80m_40m_Day"] === "Good" && goodEmoji}
-                            {condition["80m_40m_Day"] === "Fair" && fairEmoji}
-                            {condition["80m_40m_Day"] === "Poor" && poorEmoji}
+                            {condition["80m_40m_Night"] === "Good" && GoodEmoji}
+                            {condition["80m_40m_Night"] === "Fair" && FairEmoji}
+                            {condition["80m_40m_Night"] === "Poor" && PoorEmoji}
                           </td>
                           <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["80m_40m_Night"] === "Good" && goodEmoji}
-                            {condition["80m_40m_Night"] === "Fair" && fairEmoji}
-                            {condition["80m_40m_Night"] === "Poor" && poorEmoji}
+                            {condition["30m_20m_Day"] === "Good" && GoodEmoji}
+                            {condition["30m_20m_Day"] === "Fair" && FairEmoji}
+                            {condition["30m_20m_Day"] === "Poor" && PoorEmoji}
                           </td>
                           <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["30m_20m_Day"] === "Good" && goodEmoji}
-                            {condition["30m_20m_Day"] === "Fair" && fairEmoji}
-                            {condition["30m_20m_Day"] === "Poor" && poorEmoji}
+                            {condition["30m_20m_Night"] === "Good" && GoodEmoji}
+                            {condition["30m_20m_Night"] === "Fair" && FairEmoji}
+                            {condition["30m_20m_Night"] === "Poor" && PoorEmoji}
                           </td>
                           <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["30m_20m_Night"] === "Good" && goodEmoji}
-                            {condition["30m_20m_Night"] === "Fair" && fairEmoji}
-                            {condition["30m_20m_Night"] === "Poor" && poorEmoji}
+                            {condition["17m_15m_Day"] === "Good" && GoodEmoji}
+                            {condition["17m_15m_Day"] === "Fair" && FairEmoji}
+                            {condition["17m_15m_Day"] === "Poor" && PoorEmoji}                            
                           </td>
                           <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["17m_15m_Day"] === "Good" && goodEmoji}
-                            {condition["17m_15m_Day"] === "Fair" && fairEmoji}
-                            {condition["17m_15m_Day"] === "Poor" && poorEmoji}                            
+                            {condition["17m_15m_Night"] === "Good" && GoodEmoji}
+                            {condition["17m_15m_Night"] === "Fair" && FairEmoji}
+                            {condition["17m_15m_Night"] === "Poor" && PoorEmoji}
                           </td>
                           <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["17m_15m_Night"] === "Good" && goodEmoji}
-                            {condition["17m_15m_Night"] === "Fair" && fairEmoji}
-                            {condition["17m_15m_Night"] === "Poor" && poorEmoji}
+                            {condition["12m_10m_Day"] === "Good" && GoodEmoji}
+                            {condition["12m_10m_Day"] === "Fair" && FairEmoji}
+                            {condition["12m_10m_Day"] === "Poor" && PoorEmoji}
                           </td>
                           <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["12m_10m_Day"] === "Good" && goodEmoji}
-                            {condition["12m_10m_Day"] === "Fair" && fairEmoji}
-                            {condition["12m_10m_Day"] === "Poor" && poorEmoji}
-                          </td>
-                          <td className="py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition["12m_10m_Night"] === "Good" && goodEmoji}
-                            {condition["12m_10m_Night"] === "Fair" && fairEmoji}
-                            {condition["12m_10m_Night"] === "Poor" && poorEmoji}
+                            {condition["12m_10m_Night"] === "Good" && GoodEmoji}
+                            {condition["12m_10m_Night"] === "Fair" && FairEmoji}
+                            {condition["12m_10m_Night"] === "Poor" && PoorEmoji}
                           </td>
                         </tr>
                         {expandedRows[index] && (

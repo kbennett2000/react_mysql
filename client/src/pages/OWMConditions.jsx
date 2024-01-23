@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import config from '../config';
 
-// TODO: Edit config parameters
-const dataEndpointLocation = "http://192.168.1.85:8800/OWMConditions";
-const pageTitle = "Weather Conditions from OpenWeatherMap";
+const { DataEndpointAddress, FetchInterval, OWMConditionsEndpointSuffix, OWMConditionsPageTitle } = config;
 
-// TODO: Change page name
 const OWMConditions = () => {
   const [conditions, setConditions] = useState([]);
   const [expandedRows, setExpandedRows] = useState([]);
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(dataEndpointLocation);
+      const res = await axios.get(DataEndpointAddress + OWMConditionsEndpointSuffix);
       // TODO: Change table name if needed
       setConditions(res.data.ConditionReports);
     } catch (err) {
@@ -23,8 +21,7 @@ const OWMConditions = () => {
   useEffect(() => {
     fetchData(); // Initial fetch
 
-    // TODO: Adjust 1 minute refresh internal if needed
-    const interval = setInterval(fetchData, 1 * 60 * 1000);
+    const interval = setInterval(fetchData, FetchInterval);
     return () => clearInterval(interval); // Clear the interval on component unmount
   }, []);
 
@@ -38,7 +35,7 @@ const OWMConditions = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold mb-4">{pageTitle}</h1>
+      <h1 className="text-3xl font-bold mb-4">{OWMConditionsPageTitle}</h1>
       <div className="mx-auto">
         <div className="flex flex-col">
           <div className="overflow-x-auto shadow-md sm:rounded-lg">

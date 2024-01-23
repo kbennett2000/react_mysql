@@ -3,14 +3,15 @@ import axios from "axios";
 import { Line, Bar } from "react-chartjs-2";
 import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend,} from "chart.js";
 
+import config from '../config';
+const { DataEndpointAddress, FetchInterval, OWMConditionsEndpointSuffix, OWMHumidityChartTitle } = config;
+
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
 // TODO: Edit config parameters
-const chartTitle = "24 Hour Humidity Report";
 const chartLabel = "Relative Humidity";
 const chartBorderColor = "rgb(0, 128, 0)";
 const chartBackgroundColor = "rgba(0, 128, 0, 0.5)";
-const dataEndpointLocation = "http://192.168.1.85:8800/OWMChartData";
 
 export const options = {
   responsive: true,
@@ -20,7 +21,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: chartTitle,
+      text: OWMHumidityChartTitle,
     },
   },
 };
@@ -43,7 +44,7 @@ const OWMHumidityChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(dataEndpointLocation);
+        const res = await axios.get(DataEndpointAddress + OWMConditionsEndpointSuffix);
         
         // TODO: Change table name if needed
         setConditions(res.data.ConditionReports);
@@ -75,8 +76,7 @@ const OWMHumidityChart = () => {
 
     fetchData(); // Initial fetch
 
-    // TODO: Change from 1 minute interval if needed
-    const interval = setInterval(fetchData, 1 * 60 * 1000);
+    const interval = setInterval(fetchData, FetchInterval);
     return () => clearInterval(interval);
   }, []);
 

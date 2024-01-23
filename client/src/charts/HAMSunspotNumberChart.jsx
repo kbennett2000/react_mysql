@@ -3,15 +3,15 @@ import axios from "axios";
 import { Line, Bar } from "react-chartjs-2";
 import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend,} from "chart.js";
 
+import config from '../config';
+const { DataEndpointAddress, FetchInterval, HamConditionsEndpointSuffix, HamSunspotNumberChartTitle } = config;
+
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
 // TODO: Edit config parameters
-const chartTitle = "Sunspot Number Chart";
 const chartLabel = "Sunspot Number";
 const chartBorderColor = "rgb(53, 162, 235)";
 const chartBackgroundColor = "rgba(53, 162, 235, 0.5)";
-
-const dataEndpointLocation = "http://192.168.1.85:8800/HamConditionsChartData";
 
 export const options = {
   responsive: true,
@@ -21,7 +21,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: chartTitle,
+      text: HamSunspotNumberChartTitle,
     },
   },
 };
@@ -44,7 +44,7 @@ const HAMSunspotNumberChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(dataEndpointLocation);
+        const res = await axios.get(DataEndpointAddress + HamConditionsEndpointSuffix);
 
         // TODO: Change table name if needed
         setConditions(res.data.ConditionReports);
@@ -79,8 +79,7 @@ const HAMSunspotNumberChart = () => {
 
     fetchData(); // Initial fetch
 
-    // TODO: Change from 1 minute interval if needed
-    const interval = setInterval(fetchData, 1 * 60 * 1000);
+    const interval = setInterval(fetchData, FetchInterval);
     return () => clearInterval(interval);
   }, []);
 

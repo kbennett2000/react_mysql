@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import config from '../config';
 
-// TODO: Edit config parameters
-const dataEndpointLocation = "http://192.168.1.85:8800/WeatherConditions";
-const pageTitle = "Weather Conditions";
+const { DataEndpointAddress, FetchInterval, WeatherConditionsEndpointSuffix, WeatherConditionsPageTitle } = config;
 
-// TODO: Change page name
-const WeatherConditions = () => {
+const WeatherConditions = () => {  
   const [conditions, setConditions] = useState([]);
   const [expandedRows, setExpandedRows] = useState([]);
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(dataEndpointLocation);
-      // TODO: Change table name if needed
+      const res = await axios.get(DataEndpointAddress + WeatherConditionsEndpointSuffix);
       setConditions(res.data.ConditionReports);
     } catch (err) {
       console.log(err);
@@ -24,7 +21,7 @@ const WeatherConditions = () => {
     fetchData(); // Initial fetch
 
     // TODO: Adjust 1 minute refresh internal if needed
-    const interval = setInterval(fetchData, 1 * 60 * 1000);
+    const interval = setInterval(fetchData, FetchInterval);
     return () => clearInterval(interval); // Clear the interval on component unmount
   }, []);
 
@@ -38,7 +35,7 @@ const WeatherConditions = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold mb-4">Weather Conditions</h1>
+      <h1 className="text-3xl font-bold mb-4">{WeatherConditionsPageTitle}</h1>
       <div className="mx-auto">
         <div className="flex flex-col">
           <div className="overflow-x-auto shadow-md sm:rounded-lg">
@@ -47,64 +44,23 @@ const WeatherConditions = () => {
                 <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
                   <thead className="bg-blue-100 dark:bg-blue-700">
                     <tr>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        Date
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        Time
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        Conditions
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        Temp
-                      </th>
-                      <th
-                        scope="col"
-                        className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100"
-                      >
-                        Humidity
-                      </th>
+                      <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Date</th>
+                      <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Time</th>
+                      <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Conditions</th>
+                      <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Temp</th>
+                      <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-100">Humidity</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                     {conditions.map((condition, index) => (
                       <React.Fragment key={index}>
                         <tr
-                          className={`hover:bg-green-100 dark:hover:bg-green-700 ${
-                            index % 2 === 0
-                              ? "bg-gray-200 dark:bg-gray-500"
-                              : ""
-                          }`}
-                          onClick={() => toggleRow(index)}
-                        >
-                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition.modified_date}
-                          </td>
-                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition.modified_time}
-                          </td>
-                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition.weather}
-                          </td>
-                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition.temp_f}
-                          </td>
-                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {condition.relative_humidity}
-                          </td>
+                          className={`hover:bg-green-100 dark:hover:bg-green-700 ${index % 2 === 0 ? "bg-gray-200 dark:bg-gray-500" : ""}`} onClick={() => toggleRow(index)}>
+                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.modified_date}</td>
+                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.modified_time}</td>
+                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.weather}</td>
+                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.temp_f}</td>
+                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.relative_humidity}</td>
                         </tr>
                         {expandedRows[index] && (
                           <tr>
@@ -123,33 +79,13 @@ const WeatherConditions = () => {
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                                   <tr>
-                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.wind_dir}
-                                    </td>
-
-                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.wind_degrees}
-                                    </td>
-
-                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.wind_kt}
-                                    </td>
-
-                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.pressure_in}
-                                    </td>
-
-                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.dewpoint_f}
-                                    </td>
-
-                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.windchill_f}
-                                    </td>
-
-                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                      {condition.visibility_mi}
-                                    </td>
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.wind_dir}</td>
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.wind_degrees}</td>
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.wind_kt}</td>
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.pressure_in}</td>
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.dewpoint_f}</td>
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.windchill_f}</td>
+                                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{condition.visibility_mi}</td>
                                   </tr>
                                 </tbody>
                               </table>
@@ -170,5 +106,4 @@ const WeatherConditions = () => {
   
 };
 
-// TODO: Change page name
 export default WeatherConditions;
