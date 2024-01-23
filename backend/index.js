@@ -1,8 +1,6 @@
 import express from "express";
 import mysql from "mysql2";
 import cors from "cors";
-//import config from "../client/src/config";
-//const { ServerUserName, ServerPassword, ServerIPAddress, ServerPort } = config;
 
 const ServerUserName = "testUser";
 const ServerPassword = "password1";

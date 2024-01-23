@@ -1,8 +1,8 @@
 // config.js
 const config = {
     // Server address and port
-    ServerUserName: "testUser",
-    ServerPassword: "password1",
+    //ServerUserName: "testUser",
+    //ServerPassword: "password1",
     ServerIPAddress: "192.168.1.85",
     ServerPort: 8800,
     
