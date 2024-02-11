@@ -115,6 +115,13 @@ app.get("/OWMChartData", async (req, res) => {
   return res.status(200).json({ ConditionReports: rows });
 });
 
+app.get("/OWMChartData_30Day", async (req, res) => {
+  const promise = dbOWM.promise();
+  const query = "SELECT * FROM (SELECT * FROM OWMConditionsDB.ConditionReports ORDER BY date DESC, time DESC LIMIT 2880) AS top_2880 ORDER BY date ASC, time ASC";
+  const [rows, fields] = await promise.execute(query);
+  return res.status(200).json({ ConditionReports: rows });
+});
+
 app.get("/BidenData", async (req, res) => {
   const promise = dbBiden.promise();
   const query = "SELECT * FROM Biden538DB.BidenApproval ORDER BY reportDate DESC, date DESC, time DESC LIMIT 90";

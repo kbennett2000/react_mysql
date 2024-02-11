@@ -17,6 +17,7 @@ const config = {
     // Chart Data Endpoint Suffixes
     HamConditionsChartDataEndpointSuffix: "HamConditionsChartData", 
     OWMChartDataEndpointSuffix: "OWMChartData", 
+    OWMChartData30DayEndpointSuffix: "OWMChartData_30Day", 
     BidenChartDataEndpointSuffix: "BidenChartData", 
     GasPriceChartDataEndpointSuffix: "GasPriceChartData", 
 
